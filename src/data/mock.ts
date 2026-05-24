@@ -16,6 +16,27 @@ export const stats = [
   { label: "Mentor sessions", value: "4.2k" }
 ];
 
+export const landingRoles = [
+  {
+    title: "Student",
+    description: "Find projects, mentors, and AI-guided career pathways.",
+    icon: GraduationCap,
+    href: "#onboarding"
+  },
+  {
+    title: "Startup Founder",
+    description: "Post project briefs and discover AI-matched student talent.",
+    icon: Rocket,
+    href: "#marketplace"
+  },
+  {
+    title: "Mentor",
+    description: "Guide teams, review work, and manage mentorship sessions.",
+    icon: Handshake,
+    href: "#dashboards"
+  }
+];
+
 export const roles = [
   {
     title: "Students",

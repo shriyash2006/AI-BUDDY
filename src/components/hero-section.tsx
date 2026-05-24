@@ -1,12 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Play, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, ShieldCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { stats } from "@/data/mock";
+import { landingRoles, stats } from "@/data/mock";
 
 export function HeroSection() {
+  const [selectedRole, setSelectedRole] = useState(landingRoles[0].title);
+
   return (
     <section className="relative overflow-hidden px-4 pb-12 pt-32 sm:px-6 lg:px-8 lg:pt-36">
       <div className="absolute inset-0 bg-neon-grid bg-[size:44px_44px] opacity-30 [mask-image:linear-gradient(to_bottom,black,transparent_78%)]" />
@@ -23,12 +26,48 @@ export function HeroSection() {
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
             A clickable futuristic platform that connects students, startups, and mentors through AI-led onboarding, talent matching, and project collaboration.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button size="lg" variant="neon">
-              Launch prototype <ArrowRight className="h-5 w-5" />
-            </Button>
-            <Button size="lg" variant="secondary">
-              <Play className="h-5 w-5" /> Watch flow
+          <div className="glass-panel mt-8 rounded-lg p-4 sm:p-5">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">
+              Choose your journey
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white">
+              Who are you?
+            </h2>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              {landingRoles.map((role) => {
+                const isSelected = selectedRole === role.title;
+
+                return (
+                  <a
+                    key={role.title}
+                    href={role.href}
+                    onClick={() => setSelectedRole(role.title)}
+                    className={`group rounded-lg border p-4 text-left transition ${
+                      isSelected
+                        ? "border-cyan-300/70 bg-cyan-300/[0.12] shadow-glow"
+                        : "border-white/10 bg-white/[0.04] hover:border-cyan-300/35 hover:bg-white/[0.08]"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-md bg-white/10">
+                        <role.icon className="h-5 w-5 text-cyan-200" />
+                      </span>
+                      {isSelected ? (
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-cyan-300 text-slate-950">
+                          <Check className="h-4 w-4" />
+                        </span>
+                      ) : null}
+                    </div>
+                    <p className="mt-4 font-semibold text-white">{role.title}</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">{role.description}</p>
+                  </a>
+                );
+              })}
+            </div>
+            <Button className="mt-4 w-full sm:w-auto" size="lg" variant="neon" asChild>
+              <a href="#onboarding">
+                Continue as {selectedRole} <ArrowRight className="h-5 w-5" />
+              </a>
             </Button>
           </div>
           <div className="mt-10 grid max-w-2xl grid-cols-3 gap-3">
