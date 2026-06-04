@@ -1,4 +1,4 @@
-# AI BUDDY by Millionminds / CAMPUS TaaS
+# AI BUDDY / CAMPUS TaaS
 
 Frontend prototype MVP plus Phase 1 backend foundation for an AI-powered Talent-as-a-Service platform connecting students, startups, and mentors.
 
